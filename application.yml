@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active：
+    - dev
+---
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-config-colm-dev
+---
+spring:
+  profiles: test
+  application:
+    name: microservicecloud-config-colm-test
+# UTF-8
