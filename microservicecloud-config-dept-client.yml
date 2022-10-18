@@ -1,0 +1,74 @@
+spring:
+  profiles:
+    active:
+      - dev
+---
+server:
+  port: 8004
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-config-dept-client
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://colm-hisa:6603/cloudDB01?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    dbcp2:
+      min-idle: 5               # 数据库连接池的最小维持连接数
+      initial-size: 5           # 初始化连接数
+      max-total: 5              # 最大连接数
+      max-wait-millis: 200      # 等待连接获取的最大超时时间
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: org.colm.springcloud.entities
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7004:7004/eureka
+  instance:
+    instance-id: dept-8004.com # 自定义服务名称信息，默认是 hostname:applicationName:port
+    prefer-ip-address: true # 访问路径可以显示 ip，默认是 hostname:port/info
+info:
+  app.name: colm-microservicecloud-config-dept-dev
+  company.name: org.colm.com
+  build.artifactId: dev
+  build.version: dev
+---
+server:
+  port: 8005
+spring:
+  profiles: test
+  application:
+    name: microservicecloud-config-dept-client
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://colm-hisa:6603/cloudDB02?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    dbcp2:
+      min-idle: 5               # 数据库连接池的最小维持连接数
+      initial-size: 5           # 初始化连接数
+      max-total: 5              # 最大连接数
+      max-wait-millis: 200      # 等待连接获取的最大超时时间
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: org.colm.springcloud.entities
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7004:7004/eureka
+  instance:
+    instance-id: dept-8005.com # 自定义服务名称信息，默认是 hostname:applicationName:port
+    prefer-ip-address: true # 访问路径可以显示 ip，默认是 hostname:port/info
+info:
+  app.name: colm-microservicecloud-config-dept-test
+  company.name: org.colm.com
+  build.artifactId: test
+  build.version: test
